@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           // handle button 1 press
                         },
-                        child: Text('Companies'),
+                        child: Text('Companies (${filteredCompanies.length})'),
                       ),
                       TextButton(
                         style: TextButton.styleFrom(

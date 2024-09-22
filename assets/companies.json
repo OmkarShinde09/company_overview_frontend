@@ -1,319 +1,422 @@
 [
-    
-    {
-        "company": "Novartis"
-    },
-    {
-        "company": "Merck"
-    },
-    {
-        "company": "Bayhill Therapeutics"
-    },
-    {
-        "company": "Galapagos NV"
-    },
-    {
-        "company": "Genesis Limited"
-    },
-    {
-        "company": "Banner Life Sciences LLC"
-    },
-    {
-        "company": "Biocad"
-    },
-    {
-        "company": "Minoryx Therapeutics"
-    },
-    {
-        "company": "Jazz Pharmaceuticals"
-    },
-    {
-        "company": "Synthon"
-    },
-    {
-        "company": "Polpharma Biologics S.A."
-    },
-    {
-        "company": "bluebird bio"
-    },
-    
-    {
-        "company": "GeNeuro SA"
-    },
-    {
-        "company": "H. Lundbeck A/S"
-    },
-    {
-        "company": "Stem Cell Medicine"
-    },
-    {
-        "company": "Contineum Therapeutics"
-    },
-    {
-        "company": "AbbVie"
-    },
-    {
-        "company": "Revalesio Corporation"
-    },
-    {
-        "company": "Kyverna Therapeutics"
-    },
-    {
-        "company": "Takeda"
-    },
-    {
-        "company": "American Medical Systems"
-    },
-    {
-        "company": "Innate Immunotherapeutics Limited"
-    },
-    {
-        "company": "Ipsen"
-    },
-    {
-        "company": "TG Therapeutics"
-    },
-    {
-        "company": "Apitope Technology (Bristol) Ltd."
-    },
-    {
-        "company": "Impax Laboratories, Inc."
-    },
-    {
-        "company": "Sanofi"
-    },
-    {
-        "company": "Seah Lim M.D."
-    },
-    {
-        "company": "PDL BioPharma, Inc."
-    },
-    {
-        "company": "Hammersmith Medicines Research Ltd"
-    },
-    {
-        "company": "Brainstorm Cell Therapeutics Inc."
-    },
-    {
-        "company": "Cognition Therapeutics, Inc."
-    },
-    {
-        "company": "Arrien Pharmaceuticals"
-    },
-    {
-        "company": "Daiichi Sankyo"
-    },
-    {
-        "company": "Super-Pharm"
-    },
-    {
-        "company": "GSK"
-    },
-    {
-        "company": "Opexa Therapeutics, Inc."
-    },
-    {
-        "company": "Translational Biosciences"
-    },
-    {
-        "company": "Neurocrine Biosciences, Inc."
-    },
-    {
-        "company": "Shijiazhuang Pharma Group"
-    },
-    {
-        "company": "Neurotech Pharmaceuticals, Inc."
-    },
-    {
-        "company": "Coherus Biosciences"
-    },
-    {
-        "company": "Dmk Pharmaceuticals Corporation"
-    },
-    {
-        "company": "MediciNova"
-    },
-    {
-        "company": "Neurovia, Inc."
-    },
-    {
-        "company": "Roche"
-    },
-    {
-        "company": "Imcyse SA"
-    },
-    {
-        "company": "Immune Response Biopharma, Inc."
-    },
-    {
-        "company": "Johnson & Johnson"
-    },
-    {
-        "company": "Remegen Co., Ltd."
-    },
-    {
-        "company": "Mapi-Pharma Ltd."
-    },
-    {
-        "company": "Bionorica"
-    },
-    {
-        "company": "Biogen"
-    },
-    {
-        "company": "Bosnalijek D.D"
-    },
-    {
-        "company": "Mitsubishi Tanabe Pharma Corporation"
-    },
-    {
-        "company": "BMS"
-    },
-    {
-        "company": "Pfenex Inc."
-    },
-    {
-        "company": "Cinnagen"
-    },
-    {
-        "company": "Mirum Pharmaceuticals, Inc."
-    },
-    {
-        "company": "Immunic AG"
-    },
-    {
-        "company": "Acorda Therapeutics, Inc."
-    },
-    {
-        "company": "Arbor Pharmaceuticals, Inc."
-    },
-    {
-        "company": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company"
-    },
-    {
-        "company": "Eli Lilly"
-    },
-    {
-        "company": "BioMS Technology Corp."
-    },
-    {
-        "company": "Delta Crystallon BV"
-    },
-    {
-        "company": "Merz Pharma"
-    },
-    {
-        "company": "MorphoSys"
-    },
-    {
-        "company": "Atara Biotherapeutics"
-    },
-    {
-        "company": "RedHill Biopharma Ltd."
-    },
-    {
-        "company": "Medday Pharmaceuticals"
-    },
-    {
-        "company": "GE Healthcare"
-    },
-    {
-        "company": "Guangzhou Lupeng Pharmaceutical Co. Ltd."
-    },
-    {
-        "company": "Swanbio Therapeutics, Inc."
-    },
-    {
-        "company": "Teva Pharmaceutical Industries Ltd."
-    },
-    {
-        "company": "Ab Science"
-    },
-    {
-        "company": "Elan Pharmaceuticals"
-    },
-    {
-        "company": "Ever Supreme Bio Technology"
-    },
-    {
-        "company": "ImStem Biotechnology"
-    },
-    {
-        "company": "UCB Pharma"
-    },
-    {
-        "company": "Boston Scientific Corporation"
-    },
-    {
-        "company": "Osmotica Pharmaceuticals"
-    },
-    {
-        "company": "Vaccinex Inc."
-    },
-    {
-        "company": "Tiziana Life Sciences"
-    },
-    {
-        "company": "Motric Bio"
-    },
-    {
-        "company": "Ono Pharma"
-    },
-    {
-        "company": "Celltrion"
-    },
-    {
-        "company": "Apurano Pharmaceuticals GmbH"
-    },
-    {
-        "company": "Poxel SA"
-    },
-    {
-        "company": "Ashvattha Therapeutics"
-    },
-    {
-        "company": "Anokion SA"
-    },
-    {
-        "company": "Clene Nanomedicine"
-    },
-    {
-        "company": "BBB-Therapeutics B.V."
-    },
-    {
-        "company": "PTC Therapeutics"
-    },
-    {
-        "company": "Lapix Therapeutics Inc."
-    },
-    {
-        "company": "Viking Therapeutics"
-    },
-    {
-        "company": "Grifols, S.A."
-    },
-    {
-        "company": "AstraZeneca"
-    },
-    {
-        "company": "InnoCare Pharma, Inc."
-    },
-    {
-        "company": "Otsuka"
-    },
-    {
-        "company": "Talaris Therapeutics"
-    },
-    {
-        "company": "Pfizer"
-    },
-    {
-        "company": "Avigen"
-    },
-    {
-        "company": "Bayer"
-    },
-    {
-        "company": "Emerald Health Pharmaceuticals"
-    }
+  {
+    "company": "Novartis",
+    "selected": false
+  },
+  {
+    "company": "Merck",
+    "selected": false
+  },
+  {
+    "company": "Bayhill Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Galapagos NV",
+    "selected": false
+  },
+  {
+    "company": "Genesis Limited",
+    "selected": false
+  },
+  {
+    "company": "Banner Life Sciences LLC",
+    "selected": false
+  },
+  {
+    "company": "Biocad",
+    "selected": false
+  },
+  {
+    "company": "Minoryx Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Jazz Pharmaceuticals",
+    "selected": false
+  },
+  {
+    "company": "Synthon",
+    "selected": false
+  },
+  {
+    "company": "Polpharma Biologics S.A.",
+    "selected": false
+  },
+  {
+    "company": "bluebird bio",
+    "selected": false
+  },
+  {
+    "company": "GeNeuro SA",
+    "selected": false
+  },
+  {
+    "company": "H. Lundbeck A/S",
+    "selected": false
+  },
+  {
+    "company": "Stem Cell Medicine",
+    "selected": false
+  },
+  {
+    "company": "Contineum Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "AbbVie",
+    "selected": false
+  },
+  {
+    "company": "Revalesio Corporation",
+    "selected": false
+  },
+  {
+    "company": "Kyverna Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Takeda",
+    "selected": false
+  },
+  {
+    "company": "American Medical Systems",
+    "selected": false
+  },
+  {
+    "company": "Innate Immunotherapeutics Limited",
+    "selected": false
+  },
+  {
+    "company": "Ipsen",
+    "selected": false
+  },
+  {
+    "company": "TG Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Apitope Technology (Bristol) Ltd.",
+    "selected": false
+  },
+  {
+    "company": "Impax Laboratories, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Sanofi",
+    "selected": false
+  },
+  {
+    "company": "Seah Lim M.D.",
+    "selected": false
+  },
+  {
+    "company": "PDL BioPharma, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Hammersmith Medicines Research Ltd",
+    "selected": false
+  },
+  {
+    "company": "Brainstorm Cell Therapeutics Inc.",
+    "selected": false
+  },
+  {
+    "company": "Cognition Therapeutics, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Arrien Pharmaceuticals",
+    "selected": false
+  },
+  {
+    "company": "Daiichi Sankyo",
+    "selected": false
+  },
+  {
+    "company": "Super-Pharm",
+    "selected": false
+  },
+  {
+    "company": "GSK",
+    "selected": false
+  },
+  {
+    "company": "Opexa Therapeutics, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Translational Biosciences",
+    "selected": false
+  },
+  {
+    "company": "Neurocrine Biosciences, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Shijiazhuang Pharma Group",
+    "selected": false
+  },
+  {
+    "company": "Neurotech Pharmaceuticals, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Coherus Biosciences",
+    "selected": false
+  },
+  {
+    "company": "Dmk Pharmaceuticals Corporation",
+    "selected": false
+  },
+  {
+    "company": "MediciNova",
+    "selected": false
+  },
+  {
+    "company": "Neurovia, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Roche",
+    "selected": false
+  },
+  {
+    "company": "Imcyse SA",
+    "selected": false
+  },
+  {
+    "company": "Immune Response Biopharma, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Johnson & Johnson",
+    "selected": false
+  },
+  {
+    "company": "Remegen Co., Ltd.",
+    "selected": false
+  },
+  {
+    "company": "Mapi-Pharma Ltd.",
+    "selected": false
+  },
+  {
+    "company": "Bionorica",
+    "selected": false
+  },
+  {
+    "company": "Biogen",
+    "selected": false
+  },
+  {
+    "company": "Bosnalijek D.D",
+    "selected": false
+  },
+  {
+    "company": "Mitsubishi Tanabe Pharma Corporation",
+    "selected": false
+  },
+  {
+    "company": "BMS",
+    "selected": false
+  },
+  {
+    "company": "Pfenex Inc.",
+    "selected": false
+  },
+  {
+    "company": "Cinnagen",
+    "selected": false
+  },
+  {
+    "company": "Mirum Pharmaceuticals, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Immunic AG",
+    "selected": false
+  },
+  {
+    "company": "Acorda Therapeutics, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Arbor Pharmaceuticals, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+    "selected": false
+  },
+  {
+    "company": "Eli Lilly",
+    "selected": false
+  },
+  {
+    "company": "BioMS Technology Corp.",
+    "selected": false
+  },
+  {
+    "company": "Delta Crystallon BV",
+    "selected": false
+  },
+  {
+    "company": "Merz Pharma",
+    "selected": false
+  },
+  {
+    "company": "MorphoSys",
+    "selected": false
+  },
+  {
+    "company": "Atara Biotherapeutics",
+    "selected": false
+  },
+  {
+    "company": "RedHill Biopharma Ltd.",
+    "selected": false
+  },
+  {
+    "company": "Medday Pharmaceuticals",
+    "selected": false
+  },
+  {
+    "company": "GE Healthcare",
+    "selected": false
+  },
+  {
+    "company": "Guangzhou Lupeng Pharmaceutical Co. Ltd.",
+    "selected": false
+  },
+  {
+    "company": "Swanbio Therapeutics, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Teva Pharmaceutical Industries Ltd.",
+    "selected": false
+  },
+  {
+    "company": "Ab Science",
+    "selected": false
+  },
+  {
+    "company": "Elan Pharmaceuticals",
+    "selected": false
+  },
+  {
+    "company": "Ever Supreme Bio Technology",
+    "selected": false
+  },
+  {
+    "company": "ImStem Biotechnology",
+    "selected": false
+  },
+  {
+    "company": "UCB Pharma",
+    "selected": false
+  },
+  {
+    "company": "Boston Scientific Corporation",
+    "selected": false
+  },
+  {
+    "company": "Osmotica Pharmaceuticals",
+    "selected": false
+  },
+  {
+    "company": "Vaccinex Inc.",
+    "selected": false
+  },
+  {
+    "company": "Tiziana Life Sciences",
+    "selected": false
+  },
+  {
+    "company": "Motric Bio",
+    "selected": false
+  },
+  {
+    "company": "Ono Pharma",
+    "selected": false
+  },
+  {
+    "company": "Celltrion",
+    "selected": false
+  },
+  {
+    "company": "Apurano Pharmaceuticals GmbH",
+    "selected": false
+  },
+  {
+    "company": "Poxel SA",
+    "selected": false
+  },
+  {
+    "company": "Ashvattha Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Anokion SA",
+    "selected": false
+  },
+  {
+    "company": "Clene Nanomedicine",
+    "selected": false
+  },
+  {
+    "company": "BBB-Therapeutics B.V.",
+    "selected": false
+  },
+  {
+    "company": "PTC Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Lapix Therapeutics Inc.",
+    "selected": false
+  },
+  {
+    "company": "Viking Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Grifols, S.A.",
+    "selected": false
+  },
+  {
+    "company": "AstraZeneca",
+    "selected": false
+  },
+  {
+    "company": "InnoCare Pharma, Inc.",
+    "selected": false
+  },
+  {
+    "company": "Otsuka",
+    "selected": false
+  },
+  {
+    "company": "Talaris Therapeutics",
+    "selected": false
+  },
+  {
+    "company": "Pfizer",
+    "selected": false
+  },
+  {
+    "company": "Avigen",
+    "selected": false
+  },
+  {
+    "company": "Bayer",
+    "selected": false
+  },
+  {
+    "company": "Emerald Health Pharmaceuticals",
+    "selected": false
+  }
 ]

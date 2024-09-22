@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -72,6 +74,7 @@ class _AddCompanyState extends State<AddCompany> {
       ),
       body: Column(
         children: [
+          //Initial Text before the serach bar
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(left: 30, right: 30, top: 20),
@@ -90,6 +93,7 @@ class _AddCompanyState extends State<AddCompany> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //Initial text prompting to search companies
               Container(
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.only(left: 30),
@@ -98,6 +102,8 @@ class _AddCompanyState extends State<AddCompany> {
                   style: TextStyle(fontSize: 17),
                 ),
               ),
+
+              //Search Bar which uses a TextField
               Container(
                 margin: EdgeInsets.only(left: 40, right: 40),
                 padding: EdgeInsets.only(left: 20, right: 20),
@@ -130,6 +136,8 @@ class _AddCompanyState extends State<AddCompany> {
                   ),
                 ),
               ),
+
+              //Following Text after the serach bar
               Container(
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.only(left: 30),
@@ -140,6 +148,8 @@ class _AddCompanyState extends State<AddCompany> {
               ),
             ],
           ),
+
+          //ListBuilder which displays the companies available
           Flexible(
             child: ListView.builder(
               itemCount: filteredCompanies.length,
@@ -150,6 +160,8 @@ class _AddCompanyState extends State<AddCompany> {
               },
             ),
           ),
+
+          //The footer which contains a Start Processing button.
           Container(
             padding: EdgeInsets.only(top: 20, bottom: 20, right: 30),
             height: 85,
