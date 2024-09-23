@@ -60,6 +60,7 @@ flutter:
   assets:
     - assets/Knolens_logo.png
     - assets/companies.json
+    - assets/output.json
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
