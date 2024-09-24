@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:frontend/widget/first_panel_column.dart';
 import 'package:frontend/widget/second_panedl_dropdown.dart';
 import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'package:flutter/services.dart'; //For parsing HTML
 
 class CompanyInfo extends StatefulWidget {
   const CompanyInfo({super.key});
@@ -74,7 +75,7 @@ class _CompanyInfoState extends State<CompanyInfo> {
                 children: [
                   //The tiltle of the panel
                   //Display the First_Text from the first panel's left part
-                  Text(panels[0].left.header),
+                  HtmlRenderer(htmlString: panels[0].left.header),
                   Row(
                     //A row to hold the left and right parts of the panel
                     children: [
@@ -82,15 +83,8 @@ class _CompanyInfoState extends State<CompanyInfo> {
                       Expanded(
                         child: Column(
                           children: [
-                            FirstPanelColumn(
-                              text: "State of Approved Care",
-                            ),
-                            FirstPanelColumn(
-                              text: "State of Approved Therapies",
-                            ),
-                            FirstPanelColumn(
-                              text: "State of Drugs in Development",
-                            ),
+                            HtmlRenderer(
+                                htmlString: panels[0].left.firstText[0]),
                           ],
                         ),
                       ),
@@ -100,9 +94,9 @@ class _CompanyInfoState extends State<CompanyInfo> {
                         child: Center(
                           child: Container(
                             margin: EdgeInsets.all(40),
-                            child: Text(
-                              '''This module is designed to asses the state of Therapeutic Area (TA), reviewing the drugs in development or in use, the Mechanism of Action (MoA) being leveraged, the companies driving these studies, the state of clinical progress using data from published trials. The module will compare progress across MoA and by sponsoring organisation, attempt to identify trends in positive versus negative results from studies, estimated timelines for progress. Content will include: Comparison of Development in an indication, Analysis by Approved Drugs, Analysis by Drugs in Development, Timelines, and Comparative Landscape.\nDisclaimer: ANDA applications for generic drugs are currently not included.''',
-                              style: TextStyle(fontSize: 16),
+                            child: HtmlRenderer(
+                              htmlString:
+                                  panels[0].right.display.displayInfo[0].text,
                             ),
                           ),
                         ),
@@ -327,6 +321,26 @@ class _CompanyInfoState extends State<CompanyInfo> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+//Class to render HTML data which comes from the output json.
+
+class HtmlRenderer extends StatelessWidget {
+  final String? htmlString;
+
+  HtmlRenderer({this.htmlString});
+
+  @override
+  Widget build(BuildContext context) {
+    String decodedHtml = Uri.decodeComponent(htmlString!);
+
+    return Container(
+      margin: EdgeInsets.all(40),
+      child: HtmlWidget(
+        decodedHtml,
       ),
     );
   }

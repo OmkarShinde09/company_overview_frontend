@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:frontend/screens/company_info.dart';
-import 'package:frontend/screens/home_page.dart';
 
 void main() {
   runApp(MyApp());
