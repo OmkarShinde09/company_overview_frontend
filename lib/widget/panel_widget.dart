@@ -3,6 +3,7 @@
 import 'dart:typed_data';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class PanelWidget extends StatelessWidget {
@@ -18,7 +19,7 @@ class PanelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(50),
+      padding: EdgeInsets.all(40),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -78,8 +79,7 @@ class PanelWidget extends StatelessWidget {
 
           //Left side of the panel
           Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(top: 20, right: 300, left: 300, bottom: 10),
+            margin: EdgeInsets.all(28),
             child: Column(
               children: [
                 if (panel.left.firstText.isNotEmpty && panel.panelId != 'a1_0')
@@ -100,16 +100,23 @@ class PanelWidget extends StatelessWidget {
                   Container(
                       child: HtmlRenderer(
                           htmlString: panel.left.forthText.join(''))),
+                if (panel.panelId != 'a1_0')
+                  Container(
+                    height: 800,
+                    child: HtmlRendererForPlot(
+                      plotString: panel.right.display.displayInfo[0].plotData,
+                    ),
+                  ),
               ],
             ),
           ),
 
           //Right side of the panel
-          Container(
-            child: PlotDataWidget(
-              plotData: panel.right.display.displayInfo[0].plotData,
-            ),
-          )
+          // if (panel.panelId != 'a1_0')
+          //   Container(
+          //     child: HtmlRendererForPlot(
+          //         plotString: panel.right.display.displayInfo[0].plotData),
+          //   ),
         ],
       ),
     );
@@ -142,6 +149,39 @@ class HtmlRenderer extends StatelessWidget {
   }
 }
 
+class HtmlRendererForPlot extends StatelessWidget {
+  final String? plotString;
+
+  HtmlRendererForPlot({this.plotString});
+
+  @override
+  Widget build(BuildContext context) {
+    String div64 = decodePlotDataBody(plotString!);
+    String script64 = decodePlotDataScript(plotString!);
+    return InAppWebView(
+      initialData: InAppWebViewInitialData(data: '''
+      <!DOCTYPE html>
+      <html>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+        </script>
+      <body>
+      ${div64}
+      </body>
+      <script>
+      ${script64}
+      </script>
+      </html>
+      '''),
+    );
+  }
+}
+
 //Plot data widget to decode and render the plot data in the panel.
 
 class PlotDataWidget extends StatelessWidget {
@@ -154,6 +194,28 @@ class PlotDataWidget extends StatelessWidget {
     Uint8List decodedData = base64.decode(plotData);
     return Image(image: MemoryImage(decodedData));
   }
+}
+
+String decodePlotDataBody(String plotData) {
+  String decodedString = utf8.decode(base64Decode(plotData));
+  final Map<String, dynamic> decodedJson = jsonDecode(decodedString);
+
+  // Step 4: Extract the value from the JSON (from the "div64" key)
+  final String renderedText = decodedJson['div64'] ?? 'No data found';
+  String decodedHTML = utf8.decode(base64.decode(renderedText));
+
+  return decodedHTML;
+}
+
+String decodePlotDataScript(String plotData) {
+  String decodedString = utf8.decode(base64Decode(plotData));
+  final Map<String, dynamic> decodedJson = jsonDecode(decodedString);
+
+  // Step 4: Extract the value from the JSON (from the "div64" key)
+  final String renderedText = decodedJson['script64'] ?? 'No data found';
+  String decodedHTML = utf8.decode(base64.decode(renderedText));
+
+  return decodedHTML;
 }
 
 class Panel {
