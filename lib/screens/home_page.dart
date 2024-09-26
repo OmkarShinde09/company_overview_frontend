@@ -14,8 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> companies = [];
-  List<String> filteredCompanies = [];
+  List<Map<String, dynamic>> companies = [];
+  List<Map<String, dynamic>> filteredCompanies = [];
   String searchQuery = '';
 
   @override
@@ -29,8 +29,13 @@ class _HomePageState extends State<HomePage> {
         await rootBundle.loadString('assets/companies.json');
     final List<dynamic> data = json.decode(response);
     setState(() {
-      companies = data.map((company) => company['company'] as String).toList();
-      filteredCompanies = companies;
+      companies = data
+          .map((company) => {
+                'company': company['company'],
+                'selected': company['selected'],
+              })
+          .toList();
+      filteredCompanies = List.from(companies);
     });
   }
 
@@ -40,14 +45,13 @@ class _HomePageState extends State<HomePage> {
         searchQuery = query;
         filteredCompanies = companies
             .where((company) =>
-                company.toLowerCase().contains(query.toLowerCase()))
+                company['company'].toLowerCase().contains(query.toLowerCase()))
             .toList();
       });
     } else {
       setState(() {
         searchQuery = '';
-        filteredCompanies =
-            companies; // Reset to original list when query is empty
+        filteredCompanies = List.from(companies);
       });
     }
   }
@@ -195,9 +199,13 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: filteredCompanies.length,
               itemBuilder: (context, index) {
-                return ListBuilder(
-                  text: filteredCompanies[index],
-                );
+                if (filteredCompanies[index]['selected'] == true) {
+                  return ListBuilder(
+                    text: filteredCompanies[index]['company'],
+                  );
+                } else {
+                  return Container();
+                }
               },
             ),
           ),
