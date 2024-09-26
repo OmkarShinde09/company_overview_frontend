@@ -95,6 +95,10 @@ class _AddCompanyState extends State<AddCompany> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Companies updated successfully!')),
         );
+
+        // Refresh the screen
+        await loadCompanies(); // Reload companies from the JSON file
+        setState(() {}); // Update the state to reflect the changes
       } else {
         // Handle error response
         ScaffoldMessenger.of(context).showSnackBar(

@@ -1,10 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:frontend/widget/panel_widget.dart';
 import 'dart:convert';
-import 'package:flutter/services.dart'; //For parsing HTML
+import 'package:flutter/services.dart';
+import 'package:frontend/widget/single_panel.dart'; //For parsing HTML
 
 class InfoComp extends StatefulWidget {
   const InfoComp({super.key});
@@ -66,7 +65,7 @@ class _InfoCompState extends State<InfoComp> {
       body: ListView.builder(
         itemCount: panels.length,
         itemBuilder: (context, index) {
-          return PanelWidget(panel: panels[index]);
+          return SinglePanel(panel: panels[index]);
         },
       ),
     );
