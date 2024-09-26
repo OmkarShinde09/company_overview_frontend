@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/info_comp.dart';
 
 class ListBuilder extends StatelessWidget {
   final String text;
@@ -43,7 +44,10 @@ class ListBuilder extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              // handle button 2 press
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => InfoComp()),
+              );
             },
             child: Text('Open'),
           ),

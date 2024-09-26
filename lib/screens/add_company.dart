@@ -1,8 +1,9 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, use_build_context_synchronously
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http; // Import the http package
 import 'package:frontend/widget/list_item.dart';
 
 class AddCompany extends StatefulWidget {
@@ -13,8 +14,8 @@ class AddCompany extends StatefulWidget {
 }
 
 class _AddCompanyState extends State<AddCompany> {
-  List<String> companies = [];
-  List<String> filteredCompanies = [];
+  List<Map<String, dynamic>> companies = [];
+  List<Map<String, dynamic>> filteredCompanies = [];
   String searchQuery = '';
 
   @override
@@ -28,8 +29,13 @@ class _AddCompanyState extends State<AddCompany> {
         await rootBundle.loadString('assets/companies.json');
     final List<dynamic> data = json.decode(response);
     setState(() {
-      companies = data.map((company) => company['company'] as String).toList();
-      filteredCompanies = companies; // Initialize filtered companies
+      companies = data
+          .map((company) => {
+                'company': company['company'],
+                'selected': company['selected'],
+              })
+          .toList();
+      filteredCompanies = List.from(companies);
     });
   }
 
@@ -39,15 +45,67 @@ class _AddCompanyState extends State<AddCompany> {
         searchQuery = query;
         filteredCompanies = companies
             .where((company) =>
-                company.toLowerCase().contains(query.toLowerCase()))
+                company['company'].toLowerCase().contains(query.toLowerCase()))
             .toList();
       });
     } else {
       setState(() {
         searchQuery = '';
-        filteredCompanies =
-            companies; // Reset to original list when query is empty
+        filteredCompanies = List.from(companies);
       });
+    }
+  }
+
+  void _toggleCompanySelection(int index) {
+    setState(() {
+      // Toggle the selected state of the filtered company
+      filteredCompanies[index]['selected'] =
+          !filteredCompanies[index]['selected'];
+
+      // Sync the original companies list with the selected state
+      String companyName = filteredCompanies[index]['company'];
+      // Find the corresponding company in the original list and update it
+      companies.firstWhere(
+              (company) => company['company'] == companyName)['selected'] =
+          filteredCompanies[index]['selected'];
+    });
+  }
+
+  Future<void> _startProcessing() async {
+    // Gather only the selected companies
+    final selectedCompanies =
+        filteredCompanies.where((company) => company['selected']).toList();
+
+    // Prepare the request body
+    final body = json.encode(selectedCompanies);
+
+    try {
+      // Send POST request to the Go server
+      final response = await http.post(
+        Uri.parse(
+            'http://localhost:8080/update'), // Update with your server URL
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: body,
+      );
+
+      if (response.statusCode == 200) {
+        // Handle successful response
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Companies updated successfully!')),
+        );
+      } else {
+        // Handle error response
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to update companies.')),
+        );
+      }
+    } catch (e) {
+      // Handle any exceptions
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
     }
   }
 
@@ -61,20 +119,19 @@ class _AddCompanyState extends State<AddCompany> {
           IconButton(
             icon: const Icon(Icons.start),
             onPressed: () {
-              // handle button press
+              // Handle button press
             },
           ),
           IconButton(
             icon: const Icon(Icons.stop),
             onPressed: () {
-              // handle button press
+              // Handle button press
             },
           ),
         ],
       ),
       body: Column(
         children: [
-          //Initial Text before the serach bar
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(left: 30, right: 30, top: 20),
@@ -93,7 +150,6 @@ class _AddCompanyState extends State<AddCompany> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              //Initial text prompting to search companies
               Container(
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.only(left: 30),
@@ -102,8 +158,6 @@ class _AddCompanyState extends State<AddCompany> {
                   style: TextStyle(fontSize: 17),
                 ),
               ),
-
-              //Search Bar which uses a TextField
               Container(
                 margin: EdgeInsets.only(left: 40, right: 40),
                 padding: EdgeInsets.only(left: 20, right: 20),
@@ -123,7 +177,7 @@ class _AddCompanyState extends State<AddCompany> {
                   ],
                 ),
                 child: TextField(
-                  onChanged: _filterCompanies, // Update on input change
+                  onChanged: _filterCompanies,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Search Company',
@@ -136,8 +190,6 @@ class _AddCompanyState extends State<AddCompany> {
                   ),
                 ),
               ),
-
-              //Following Text after the serach bar
               Container(
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.only(left: 30),
@@ -148,20 +200,18 @@ class _AddCompanyState extends State<AddCompany> {
               ),
             ],
           ),
-
-          //ListBuilder which displays the companies available
           Flexible(
             child: ListView.builder(
               itemCount: filteredCompanies.length,
               itemBuilder: (context, index) {
                 return ListItem(
-                  text: filteredCompanies[index],
+                  text: filteredCompanies[index]['company'],
+                  isChecked: filteredCompanies[index]['selected'],
+                  onCheckedChanged: () => _toggleCompanySelection(index),
                 );
               },
             ),
           ),
-
-          //The footer which contains a Start Processing button.
           Container(
             padding: EdgeInsets.only(top: 20, bottom: 20, right: 30),
             height: 85,
@@ -180,9 +230,7 @@ class _AddCompanyState extends State<AddCompany> {
                       borderRadius: BorderRadius.circular(3),
                     ),
                   ),
-                  onPressed: () {
-                    // handle button press
-                  },
+                  onPressed: _startProcessing, // Call the processing function
                   child: Text('Start Processing'),
                 ),
               ],

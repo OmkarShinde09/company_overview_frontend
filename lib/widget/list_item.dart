@@ -1,12 +1,15 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class ListItem extends StatefulWidget {
   final String text;
+  final bool isChecked;
+  final VoidCallback onCheckedChanged;
+
   const ListItem({
     super.key,
     required this.text,
+    required this.isChecked,
+    required this.onCheckedChanged,
   });
 
   @override
@@ -14,8 +17,6 @@ class ListItem extends StatefulWidget {
 }
 
 class _ListItemState extends State<ListItem> {
-  bool _isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,14 +24,13 @@ class _ListItemState extends State<ListItem> {
       margin: EdgeInsets.only(left: 130, right: 130, bottom: 20),
       decoration: BoxDecoration(
         border: Border.all(
-          color: const Color.fromARGB(128, 158, 158, 158), // border color
-          width: 1, // border width
+          color: const Color.fromARGB(128, 158, 158, 158),
+          width: 1,
         ),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
         children: [
-          //The Gesture Detector is enclosed inside a container to give it a border
           Container(
             margin: EdgeInsets.only(right: 20),
             decoration: BoxDecoration(
@@ -40,16 +40,14 @@ class _ListItemState extends State<ListItem> {
             ),
             child: GestureDetector(
               onTap: () {
-                setState(() {
-                  _isChecked = !_isChecked;
-                });
+                widget.onCheckedChanged();
               },
               child: CircleAvatar(
                 radius: 12,
-                backgroundColor: _isChecked
+                backgroundColor: widget.isChecked
                     ? const Color.fromARGB(160, 0, 150, 135)
                     : Colors.white,
-                child: _isChecked
+                child: widget.isChecked
                     ? Icon(
                         Icons.check,
                         size: 16,
@@ -59,7 +57,6 @@ class _ListItemState extends State<ListItem> {
               ),
             ),
           ),
-          //Basic text for the company name
           Text(
             widget.text,
             style: TextStyle(fontSize: 17),

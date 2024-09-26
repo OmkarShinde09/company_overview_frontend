@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 
 class PanelWidget extends StatelessWidget {
@@ -19,15 +20,15 @@ class PanelWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(40),
+      padding: EdgeInsets.only(left: 70, right: 70),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: const Color.fromARGB(29, 0, 0, 0).withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 3), // changes position of shadow
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 4,
+            blurRadius: 4,
+            offset: Offset(0, 3),
           ),
         ],
       ),
@@ -79,7 +80,6 @@ class PanelWidget extends StatelessWidget {
 
           //Left side of the panel
           Container(
-            margin: EdgeInsets.all(28),
             child: Column(
               children: [
                 if (panel.left.firstText.isNotEmpty && panel.panelId != 'a1_0')
@@ -100,23 +100,19 @@ class PanelWidget extends StatelessWidget {
                   Container(
                       child: HtmlRenderer(
                           htmlString: panel.left.forthText.join(''))),
-                if (panel.panelId != 'a1_0')
-                  Container(
-                    height: 800,
-                    child: HtmlRendererForPlot(
-                      plotString: panel.right.display.displayInfo[0].plotData,
-                    ),
-                  ),
               ],
             ),
           ),
 
-          //Right side of the panel
-          // if (panel.panelId != 'a1_0')
-          //   Container(
-          //     child: HtmlRendererForPlot(
-          //         plotString: panel.right.display.displayInfo[0].plotData),
-          //   ),
+          if (panel.panelId != 'a1_0')
+            Container(
+              height: 1000,
+              child: HtmlRendererForPlot(
+                plotString: panel.left.header == 'State of Approved Care'
+                    ? padBase64(panel.right.display.displayInfo[0].plotData)
+                    : panel.right.display.displayInfo[0].plotData,
+              ),
+            ),
         ],
       ),
     );
@@ -134,19 +130,23 @@ class HtmlRenderer extends StatelessWidget {
   Widget build(BuildContext context) {
     String decodedHtml = Uri.decodeComponent(htmlString!);
 
-    // return SizedBox(
-    //   height: MediaQuery.of(context).size.height, // or any other fixed height
-    //   child: Container(
-    //     margin: EdgeInsets.all(40),
-    //     child: HtmlWidget(
-    //       decodedHtml,
-    //     ),
-    //   ),
-    // );
+    //return this decoded HTML in HtmlWidget with bigger font size.
+    return HtmlWidget(
+      decodedHtml,
+      textStyle: TextStyle(fontSize: 16),
+    );
 
     //Just return the decoded HTML. Handle the styling in the Flutter.
-    return HtmlWidget(decodedHtml);
+    //return HtmlWidget(decodedHtml);
   }
+}
+
+String padBase64(String base64) {
+  int mod = base64.length % 4;
+  if (mod > 0) {
+    base64 += '=' * (4 - mod);
+  }
+  return base64;
 }
 
 class HtmlRendererForPlot extends StatelessWidget {
@@ -162,6 +162,7 @@ class HtmlRendererForPlot extends StatelessWidget {
       initialData: InAppWebViewInitialData(data: '''
       <!DOCTYPE html>
       <html>
+      <head>
       <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
@@ -169,13 +170,14 @@ class HtmlRendererForPlot extends StatelessWidget {
         <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/libs/jszip.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@3.12.0/dist/pptxgen.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
-        </script>
+       </head>
       <body>
-      ${div64}
-      </body>
-      <script>
-      ${script64}
-      </script>
+ <div id="content">
+            ${div64}
+          </div>
+          <script>
+            ${script64}
+          </script>
       </html>
       '''),
     );
